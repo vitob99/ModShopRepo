@@ -25,12 +25,11 @@
                         case ConsoleKey.D2: AcquistaGadget(); break;
                         case ConsoleKey.D3: AcquistaOggettoDigitale(); break;
                     }
-                    //Console.Clear();
                     ContinueAndClear();
                     break;
                 case ConsoleKey.D4:
                     flag = false;
-                    //Console.Clear();
+                    Console.Clear();
                     Console.WriteLine("Sessione conclusa.");
                     ContinueAndClear();
                     break;
@@ -133,15 +132,15 @@
     public static void ContinueOrNot(ref bool flag)
     {
         ConsoleKeyInfo continuare;
-            do {
-                Console.Clear();
-                Console.WriteLine("Prodotto aggiunto.");
-                Console.WriteLine("\nVuoi aggiungere altro? (S/N)");
-                continuare = Console.ReadKey(true)!;
-            } while (continuare.Key is not (ConsoleKey.S or ConsoleKey.N));
+        do {
+            Console.Clear();
+            Console.WriteLine("Prodotto aggiunto.");
+            Console.WriteLine("\nVuoi aggiungere altro? (S/N)");
+            continuare = Console.ReadKey(true)!;
+        } while (continuare.Key is not (ConsoleKey.S or ConsoleKey.N));
 
-            if (continuare.Key is ConsoleKey.N) flag = false; 
-            ContinueAndClear();
+        if (continuare.Key is ConsoleKey.N) { flag = false; }
+        Console.Clear();
     }
 
     public static void PaymentMethod(ICatalogo oggetto)
@@ -172,11 +171,11 @@
         decimal prezzoBase = oggetto.GetPrezzo(); 
         decimal prezzoFinale = AppContext.GetInstance().CalcolaPrezzo(prezzoBase);
 
-        Console.WriteLine($"\nStrategia applicata: {AppContext.GetInstance().strategy!.NomeStrategia()}");
+        Console.Clear();
+        Console.WriteLine($"Strategia applicata: {AppContext.GetInstance().strategy!.NomeStrategia()}");
         Console.WriteLine($"Prezzo finale da pagare ({AppContext.regione}): {(AppContext.regione == "EU" ? "€" : "$")}{prezzoFinale:F2}");
         
         AppContext.GetInstance().Checkout(); // Notifica gli osservatori
-        ContinueAndClear();
     }
 
     public static void ContinueAndClear()
