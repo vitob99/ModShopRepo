@@ -141,6 +141,7 @@
             scelta = Console.ReadKey()!;
         } while (scelta.Key is < ConsoleKey.D1 or > ConsoleKey.D3);
 
+        // Selezionare strategia in base alla scelta, modificando il riferimento attuale della classe 'Singleton', 'AppContext'
         switch (scelta.Key)
         {
             case ConsoleKey.D1:
