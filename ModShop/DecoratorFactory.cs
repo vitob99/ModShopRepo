@@ -4,38 +4,41 @@ public static class DecoratorFactory
     {
         if (oggettoBase is Gadget)
         {
-            switch (scelta)
+            return scelta switch
             {
-                case 1: return new FunkoPop(oggettoBase);
-                case 2: return new Portachiavi(oggettoBase);
-                case 3: return new Tazza(oggettoBase);
-                case 4: return new Poster(oggettoBase);
-                case 5: return new ActionFigure(oggettoBase);
-            }
+                1 => new FunkoPop(oggettoBase),
+                2 => new Portachiavi(oggettoBase),
+                3 => new Tazza(oggettoBase),
+                4 => new Poster(oggettoBase),
+                5 => new ActionFigure(oggettoBase),
+                _ => oggettoBase
+            };
         }
 
         if (oggettoBase is Fumetto)
         {
-            switch (scelta)
+            return scelta switch
             {
-                case 1: return new SpiderManBlue(oggettoBase);
-                case 2: return new Superman(oggettoBase);
-                case 3: return new JusticeLeague(oggettoBase);
-                case 4: return new Batman(oggettoBase);
-                case 5: return new Flash(oggettoBase);
-            }
+                1 => new SpiderManBlue(oggettoBase),
+                2 => new Superman(oggettoBase),
+                3 => new JusticeLeague(oggettoBase),
+                4 => new Batman(oggettoBase),
+                5 => new Flash(oggettoBase),
+                _ => oggettoBase
+            };
         }
 
         if (oggettoBase is Digitale)
         {
-            switch (scelta)
+            return scelta switch
             {
-                case 1: return new WallpaperArtistico(oggettoBase);
-                case 2: return new ColonnaSonora(oggettoBase);
-                case 3: return new Artbook(oggettoBase);
-                case 4: return new Skin(oggettoBase);
-                case 5: return new AbbonamentoPremium(oggettoBase);
-            }
+                1 => new WallpaperArtistico(oggettoBase),
+                2 => new ColonnaSonora(oggettoBase),
+                3 => new Artbook(oggettoBase),
+                4 => new Skin(oggettoBase),
+                5 => new AbbonamentoPremium(oggettoBase),
+                _ => oggettoBase
+            };
         }
 
         return oggettoBase;
