@@ -4,14 +4,11 @@ public class PromoPricingStrategy : IStrategyPagamento
     const decimal TASSO_US = 1.0771m;
     public decimal CalcolaPrezzo(decimal prezzo, string regione)
     {
-        if(regione == "US")
-        {
-            return prezzo - prezzo * PROMO_DISCOUNT / 100 / TASSO_US;
-        }
-        return prezzo - (prezzo * PROMO_DISCOUNT / 100);
+        // 1. Applichiamo lo sconto (5%)
+        decimal prezzoScontato = prezzo * (1 - PROMO_DISCOUNT / 100m);
+        
+        // 2. Convertiamo se necessario
+        return (regione == "US") ? prezzoScontato * TASSO_US : prezzoScontato;
     }
-    public string NomeStrategia()
-    {
-        return "Calcolo Prezzo Promo";
-    }
+    public string NomeStrategia() => "Calcolo Prezzo Promo";
 }

@@ -5,19 +5,12 @@ public class VIPPricingStrategy : IStrategyPagamento
 
     public decimal CalcolaPrezzo(decimal prezzo, string regione)
     {
-        decimal prezzoScontato = prezzo - (prezzo * VIP_DISCOUNT / 100);
+        // 1. Applichiamo lo sconto (7%)
+        decimal prezzoScontato = prezzo * (1 - VIP_DISCOUNT / 100m);
 
-        if (regione == "US")
-        {
-            // Se il prezzo base è in Euro, lo moltiplichiamo per il tasso per avere i Dollari
-            return prezzoScontato * TASSO_US;
-        }
-        
-        return prezzoScontato;
+        // 2. Convertiamo se necessario
+        return (regione == "US") ? prezzoScontato * TASSO_US : prezzoScontato;
     }
 
-    public string NomeStrategia()
-    {
-        return "Calcolo Prezzo VIP";
-    }
+    public string NomeStrategia() => "Calcolo Prezzo VIP";
 }
