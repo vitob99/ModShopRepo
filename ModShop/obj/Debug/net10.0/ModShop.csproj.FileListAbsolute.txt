@@ -1,0 +1,15 @@
+C:\Users\rebox\Desktop\ModShopRepo\ModShop\bin\Debug\net10.0\ModShop.exe
+C:\Users\rebox\Desktop\ModShopRepo\ModShop\bin\Debug\net10.0\ModShop.deps.json
+C:\Users\rebox\Desktop\ModShopRepo\ModShop\bin\Debug\net10.0\ModShop.runtimeconfig.json
+C:\Users\rebox\Desktop\ModShopRepo\ModShop\bin\Debug\net10.0\ModShop.dll
+C:\Users\rebox\Desktop\ModShopRepo\ModShop\bin\Debug\net10.0\ModShop.pdb
+C:\Users\rebox\Desktop\ModShopRepo\ModShop\obj\Debug\net10.0\ModShop.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rebox\Desktop\ModShopRepo\ModShop\obj\Debug\net10.0\ModShop.AssemblyInfoInputs.cache
+C:\Users\rebox\Desktop\ModShopRepo\ModShop\obj\Debug\net10.0\ModShop.AssemblyInfo.cs
+C:\Users\rebox\Desktop\ModShopRepo\ModShop\obj\Debug\net10.0\ModShop.csproj.CoreCompileInputs.cache
+C:\Users\rebox\Desktop\ModShopRepo\ModShop\obj\Debug\net10.0\ModShop.sourcelink.json
+C:\Users\rebox\Desktop\ModShopRepo\ModShop\obj\Debug\net10.0\ModShop.dll
+C:\Users\rebox\Desktop\ModShopRepo\ModShop\obj\Debug\net10.0\refint\ModShop.dll
+C:\Users\rebox\Desktop\ModShopRepo\ModShop\obj\Debug\net10.0\ModShop.pdb
+C:\Users\rebox\Desktop\ModShopRepo\ModShop\obj\Debug\net10.0\ModShop.genruntimeconfig.cache
+C:\Users\rebox\Desktop\ModShopRepo\ModShop\obj\Debug\net10.0\ref\ModShop.dll
