@@ -3,8 +3,8 @@ public sealed class AppContext
     private static AppContext? _instance;
 
     private List<IObserver> observers = new List<IObserver>();
-    private static string? regione;
-    private IStrategyPagamento? strategy;
+    public static string? regione;
+    public IStrategyPagamento? strategy;
     private ICatalogo? catalogo;
 
     private AppContext() { }

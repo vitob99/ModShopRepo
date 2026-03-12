@@ -1,7 +1,5 @@
 ﻿class Program
 {
-    // PLACEHOLDER
-    public static string regione = string.Empty; // Ovviamente si dovrà leggere/scrivere la proprietà globale nel 'AppContext'
     public static void Main()
     {
         SceltaRegione();
@@ -49,7 +47,7 @@
             scelta = Console.ReadKey(true);
         } while (scelta.Key is < ConsoleKey.D1 or > ConsoleKey.D2);
         
-        regione = scelta.Key switch { ConsoleKey.D1 => "EU", ConsoleKey.D2 => "US", _ => string.Empty };
+        AppContext.regione = scelta.Key switch { ConsoleKey.D1 => "EU", ConsoleKey.D2 => "US", _ => string.Empty };
 
         Console.Clear();
         Console.WriteLine("Regione selezionata. Accesso validato!");
@@ -58,67 +56,78 @@
 
     public static void AcquistaFumetto()
     {
-        //ICatalogo oggetto = CatalogoFactory("FUMETTO");
-        bool flag = true;
-        while (flag) 
+        // 1. Inizializziamo l'oggetto base
+        ICatalogo oggetto = CatalogoFactory.CreaOggetto("FUMETTO");
+        bool continuaAggiungere = true;
+
+        while (continuaAggiungere) 
         {
             int scelta;
             do {
                 Console.Clear();
                 Console.WriteLine("--- CATALOGO FUMETTI ---");
-                Console.WriteLine($"1. Spider-Man: Blue - {(regione is "EU" ? '€' : '$')}15.00\n" +
-                    $"2. Superman (Ed. Deluxe) - {(regione is "EU" ? '€' : '$')}35.00\n" +
-                    $"3. Justice League Vol. 1 - {(regione is "EU" ? '€' : '$')}5.00\n" +
-                    $"4. Batman: Il Ritorno del Cavaliere Oscuro - {(regione is "EU" ? '€' : '$')}20.00\n" +
-                    $"5. Flash Vol. 100 - {(regione is "EU" ? '€' : '$')}4.30");
+                Console.WriteLine($"1. Spider-Man: Blue - {(AppContext.regione is "EU" ? '€' : '$')}15.00\n" +
+                    $"2. Superman (Ed. Deluxe) - {(AppContext.regione is "EU" ? '€' : '$')}35.00\n" +
+                    $"3. Justice League Vol. 1 - {(AppContext.regione is "EU" ? '€' : '$')}5.00\n" +
+                    $"4. Batman: Il Ritorno del Cavaliere Oscuro - {(AppContext.regione is "EU" ? '€' : '$')}20.00\n" +
+                    $"5. Flash Vol. 100 - {(AppContext.regione is "EU" ? '€' : '$')}4.30");
             } while (!int.TryParse(Console.ReadLine()!, out scelta) || scelta is < 1 or > 5);
-            //oggetto = DecoratorFatory.Decora(oggetto);
-            ContinueOrNot(ref flag);
+            
+            // 2. Decoriamo l'oggetto esistente con la nuova scelta
+            oggetto = DecoratorFactory.Decora(oggetto, scelta);
+
+            // 3. Chiediamo se vuole continuare (passando il flag per referenza)
+            ContinueOrNot(ref continuaAggiungere);
         }
+
+        // 4. Viene eseguito solo quando l'utente ha finito di aggiungere prodotti (preme 'N')
+        PaymentMethod(oggetto);
     }
 
     public static void AcquistaGadget()
     {
-        //ICatalogo oggetto = CatalogoFactory("GADGET");
+        ICatalogo oggetto = CatalogoFactory.CreaOggetto("GADGET");
         bool flag = true;
         while (flag) 
         {
             int scelta;
             do {
                 Console.WriteLine("--- CATALOGO GADGET ---");
-                Console.WriteLine($"1. Funko Pop! Iron Man - {(regione is "EU" ? '€' : '$')}12.90\n" +
-                $"2. Portachiavi Zelda (Triforza) - {(regione is "EU" ? '€' : '$')}6.50\n" +
-                $"3. Tazza Termica Pac-Man - {(regione is "EU" ? '€' : '$')}14.00\n" +
-                $"4. Poster Arrotolato One Piece - {(regione is "EU" ? '€' : '$')}9.90\n" +
-                $"5. Action Figure Goku SSJ - {(regione is "EU" ? '€' : '$')}45.00");
+                Console.WriteLine($"1. Funko Pop! Iron Man - {(AppContext.regione is "EU" ? '€' : '$')}12.90\n" +
+                $"2. Portachiavi Zelda (Triforza) - {(AppContext.regione is "EU" ? '€' : '$')}6.50\n" +
+                $"3. Tazza Termica Pac-Man - {(AppContext.regione is "EU" ? '€' : '$')}14.00\n" +
+                $"4. Poster Arrotolato One Piece - {(AppContext.regione is "EU" ? '€' : '$')}9.90\n" +
+                $"5. Action Figure Goku SSJ - {(AppContext.regione is "EU" ? '€' : '$')}45.00");
             } while (!int.TryParse(Console.ReadLine()!, out scelta) || scelta is < 1 or > 5);
             
-            //oggetto = DecoratorFatory.Decora(oggetto);
+            oggetto = DecoratorFactory.Decora(oggetto, scelta);
             ContinueOrNot(ref flag);
-            PaymentMethod(/*oggetto*/);
         }
+
+        PaymentMethod(oggetto);
     }
 
     public static void AcquistaOggettoDigitale()
     {
-        //ICatalogo oggetto = CatalogoFactory("DIGITALE");
+        ICatalogo oggetto = CatalogoFactory.CreaOggetto("DIGITALE");
         bool flag = true;
         while (flag)
         {
             int scelta;
             do { 
                 Console.WriteLine("--- CONTENUTI DIGITALI ---");
-                Console.WriteLine($"1. Wallpaper Collezione Artistica - {(regione is "EU" ? '€' : '$')}1.99\n" +
-                $"2. Colonna Sonora Originale - {(regione is "EU" ? '€' : '$')}9.99\n" +
-                $"3. Artbook Digitale (PDF) - {(regione is "EU" ? '€' : '$')}12.50\n" +
-                $"4. Skin Esclusiva 'Pixel Hero' - {(regione is "EU" ? '€' : '$')}4.99\n" +
-                $"5. Abbonamento Premium 1 Mese - {(regione is "EU" ? '€' : '$')}7.00");
+                Console.WriteLine($"1. Wallpaper Collezione Artistica - {(AppContext.regione is "EU" ? '€' : '$')}1.99\n" +
+                $"2. Colonna Sonora Originale - {(AppContext.regione is "EU" ? '€' : '$')}9.99\n" +
+                $"3. Artbook Digitale (PDF) - {(AppContext.regione is "EU" ? '€' : '$')}12.50\n" +
+                $"4. Skin Esclusiva 'Pixel Hero' - {(AppContext.regione is "EU" ? '€' : '$')}4.99\n" +
+                $"5. Abbonamento Premium 1 Mese - {(AppContext.regione is "EU" ? '€' : '$')}7.00");
             } while (!int.TryParse(Console.ReadLine()!, out scelta) || scelta is < 1 or > 5);
             
-            //oggetto = DecoratorFatory.Decora(oggetto);
+            oggetto = DecoratorFactory.Decora(oggetto, scelta);
             ContinueOrNot(ref flag);
-            PaymentMethod(/*oggetto*/);
         }
+        
+        PaymentMethod(oggetto);
     }
 
     public static void ContinueOrNot(ref bool flag)
@@ -135,12 +144,12 @@
             ContinueAndClear();
     }
 
-    public static void PaymentMethod(/*ICatalogo oggetto*/)
+    public static void PaymentMethod(ICatalogo oggetto)
     {
         ConsoleKeyInfo scelta;
         do {
             Console.Clear();
-            Console.WriteLine("Selezione metodo pagamento:\n1. Contanti\n1. Carta Credito\n3. Bitcoin");
+            Console.WriteLine("Selezione metodo pagamento:\n1. Contanti\n2. Carta Credito\n3. Bitcoin");
             scelta = Console.ReadKey()!;
         } while (scelta.Key is < ConsoleKey.D1 or > ConsoleKey.D3);
 
@@ -149,18 +158,25 @@
         switch (scelta.Key)
         {
             case ConsoleKey.D1:
-                // 1. Scelta strategia
-                // 2. Pagamento
+                AppContext.GetInstance().SetStrategia(new StandardPricingStrategy());
                 break;
             case ConsoleKey.D2:
-                // 1. Scelta strategia
-                // 2. Pagamento
+                AppContext.GetInstance().SetStrategia(new PromoPricingStrategy());
                 break;
             case ConsoleKey.D3:
-                // 1. Scelta strategia
-                // 2. Pagamento
+                AppContext.GetInstance().SetStrategia(new VIPPricingStrategy());
                 break;
         }
+
+        // Recupero prezzo finale
+        decimal prezzoBase = oggetto.GetPrezzo(); 
+        decimal prezzoFinale = AppContext.GetInstance().CalcolaPrezzo(prezzoBase);
+
+        Console.WriteLine($"\nStrategia applicata: {AppContext.GetInstance().strategy!.NomeStrategia()}");
+        Console.WriteLine($"Prezzo finale da pagare ({AppContext.regione}): {(AppContext.regione == "EU" ? "€" : "$")}{prezzoFinale:F2}");
+        
+        AppContext.GetInstance().Checkout(); // Notifica gli osservatori
+        ContinueAndClear();
     }
 
     public static void ContinueAndClear()
