@@ -1,11 +1,11 @@
 public sealed class AppContext
 {
-    private static AppContext _instance;
+    private static AppContext? _instance;
 
     private List<IObserver> observers = new List<IObserver>();
-
-    private IStrategyPagamento strategy;
-    private ICatalogo catalogo;
+    private static string? regione;
+    private IStrategyPagamento? strategy;
+    private ICatalogo? catalogo;
 
     private AppContext() { }
 
@@ -40,7 +40,7 @@ public sealed class AppContext
     {
         foreach (var o in observers)
         {
-            o.AggiornamentoCambioStrategia(strategy);
+            o.AggiornamentoCambioStrategia(strategy!);
         }
     }
 
@@ -48,7 +48,7 @@ public sealed class AppContext
     {
         foreach (var o in observers)
         {
-            o.AggiornamentoCambioDecorazione(catalogo, tipo);
+            o.AggiornamentoCambioDecorazione(catalogo!, tipo);
         }
     }
 
@@ -56,7 +56,7 @@ public sealed class AppContext
     {
         foreach (var o in observers)
         {
-            o.AggiornamentoCheckout(catalogo);
+            o.AggiornamentoCheckout(catalogo!);
         }
     }
 
@@ -67,12 +67,12 @@ public sealed class AppContext
         NotifyStrategia();
     }
 
-    public decimal CalcolaPrezzo(decimal prezzo, string valuta, int iva, int sconto)
+    public decimal CalcolaPrezzo(decimal prezzo)
     {
         if (strategy == null)
             throw new Exception("Strategia non impostata");
 
-        return strategy.CalcolaPrezzo(prezzo, valuta, iva, sconto);
+        return strategy.CalcolaPrezzo(prezzo, regione!);
     }
 
     // EVENTI EXTRA
