@@ -74,8 +74,8 @@
             //oggetto = DecoratorFatory.Decora(oggetto);
             ContinueOrNot(ref flag);
         }
-
     }
+
     public static void AcquistaGadget()
     {
         //ICatalogo oggetto = CatalogoFactory("GADGET");
@@ -97,6 +97,7 @@
             PaymentMethod(/*oggetto*/);
         }
     }
+
     public static void AcquistaOggettoDigitale()
     {
         //ICatalogo oggetto = CatalogoFactory("DIGITALE");
@@ -132,6 +133,7 @@
             if (continuare.Key is ConsoleKey.N) flag = false; 
             ContinueAndClear();
     }
+
     public static void PaymentMethod(/*ICatalogo oggetto*/)
     {
         ConsoleKeyInfo scelta;
@@ -159,6 +161,7 @@
                 break;
         }
     }
+    
     public static void ContinueAndClear()
     {
         Console.WriteLine("\nPremere un tasto per continuare...");
