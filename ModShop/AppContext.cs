@@ -1,23 +1,14 @@
 public sealed class AppContext
 {
-    private static AppContext? _instance;
-
+    private static readonly Lazy<AppContext> _instance = new (() => new AppContext());
     private List<IObserver> observers = new List<IObserver>();
     public static string? regione;
     public IStrategyPagamento? strategy;
     private ICatalogo? catalogo;
 
+    public static AppContext Instance => _instance.Value;
+
     private AppContext() { }
-
-    public static AppContext GetInstance()
-    {
-        if (_instance == null)
-        {
-            _instance = new AppContext();
-        }
-
-        return _instance;
-    }
 
     // impostazione catalogo
     public void SetCatalogo(ICatalogo c)

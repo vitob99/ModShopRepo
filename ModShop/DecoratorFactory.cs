@@ -6,20 +6,11 @@ public static class DecoratorFactory
         {
             switch (scelta)
             {
-                case 1:
-                    return new FunkoPop(oggettoBase);
-
-                case 2:
-                    return new Portachiavi(oggettoBase);
-
-                case 3:
-                    return new Tazza(oggettoBase);
-
-                case 4:
-                    return new Poster(oggettoBase);
-
-                case 5:
-                    return new ActionFigure(oggettoBase);
+                case 1: return new FunkoPop(oggettoBase);
+                case 2: return new Portachiavi(oggettoBase);
+                case 3: return new Tazza(oggettoBase);
+                case 4: return new Poster(oggettoBase);
+                case 5: return new ActionFigure(oggettoBase);
             }
         }
 
@@ -27,20 +18,11 @@ public static class DecoratorFactory
         {
             switch (scelta)
             {
-                case 1:
-                    return new SpiderManBlue(oggettoBase);
-
-                case 2:
-                    return new Superman(oggettoBase);
-
-                case 3:
-                    return new JusticeLeague(oggettoBase);
-
-                case 4:
-                    return new Batman(oggettoBase);
-
-                case 5:
-                    return new Flash(oggettoBase);
+                case 1: return new SpiderManBlue(oggettoBase);
+                case 2: return new Superman(oggettoBase);
+                case 3: return new JusticeLeague(oggettoBase);
+                case 4: return new Batman(oggettoBase);
+                case 5: return new Flash(oggettoBase);
             }
         }
 
@@ -48,20 +30,11 @@ public static class DecoratorFactory
         {
             switch (scelta)
             {
-                case 1:
-                    return new WallpaperArtistico(oggettoBase);
-
-                case 2:
-                    return new ColonnaSonora(oggettoBase);
-
-                case 3:
-                    return new Artbook(oggettoBase);
-
-                case 4:
-                    return new Skin(oggettoBase);
-
-                case 5:
-                    return new AbbonamentoPremium(oggettoBase);
+                case 1: return new WallpaperArtistico(oggettoBase);
+                case 2: return new ColonnaSonora(oggettoBase);
+                case 3: return new Artbook(oggettoBase);
+                case 4: return new Skin(oggettoBase);
+                case 5: return new AbbonamentoPremium(oggettoBase);
             }
         }
 

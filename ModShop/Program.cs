@@ -157,25 +157,25 @@
         switch (scelta.Key)
         {
             case ConsoleKey.D1:
-                AppContext.GetInstance().SetStrategia(new StandardPricingStrategy());
+                AppContext.Instance.SetStrategia(new StandardPricingStrategy());
                 break;
             case ConsoleKey.D2:
-                AppContext.GetInstance().SetStrategia(new PromoPricingStrategy());
+                AppContext.Instance.SetStrategia(new PromoPricingStrategy());
                 break;
             case ConsoleKey.D3:
-                AppContext.GetInstance().SetStrategia(new VIPPricingStrategy());
+                AppContext.Instance.SetStrategia(new VIPPricingStrategy());
                 break;
         }
 
         // Recupero prezzo finale
         decimal prezzoBase = oggetto.GetPrezzo(); 
-        decimal prezzoFinale = AppContext.GetInstance().CalcolaPrezzo(prezzoBase);
+        decimal prezzoFinale = AppContext.Instance.CalcolaPrezzo(prezzoBase);
 
         Console.Clear();
-        Console.WriteLine($"Strategia applicata: {AppContext.GetInstance().strategy!.NomeStrategia()}");
+        Console.WriteLine($"Strategia applicata: {AppContext.Instance.strategy!.NomeStrategia()}");
         Console.WriteLine($"Prezzo finale da pagare ({AppContext.regione}): {(AppContext.regione == "EU" ? "€" : "$")}{prezzoFinale:F2}");
         
-        AppContext.GetInstance().Checkout(); // Notifica gli osservatori
+        AppContext.Instance.Checkout(); // Notifica gli osservatori
     }
 
     public static void ContinueAndClear()

@@ -1,8 +1,8 @@
-interface ICatalogoSubject  //implementare nella classe singleton, che avrà una List<IObserver>
+interface ICatalogoSubject  // Implementare nella classe singleton, che avrà un 'List<IObserver>'
 {
     void AggiungiObserver();
     void RimuoviObserver();
-    void Notifica(IStrategyPagamento s);  //notifica aggiornamento strategia
-    void Notifica(string tipo); // + IProdotto //notifica aggiornamento decorazione
-    void Notifica(); // + IProdotto //notifica aggiornamento checkout
+    void Notifica(IStrategyPagamento s);  // Notifica aggiornamento strategia
+    void Notifica(string tipo); // + IProdotto // Notifica aggiornamento decorazione
+    void Notifica(); // + IProdotto // Notifica aggiornamento checkout
 }

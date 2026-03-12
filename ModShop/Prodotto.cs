@@ -2,10 +2,7 @@ public abstract class Prodotto : ICatalogo
 {
     protected ICatalogo _oggetto;
 
-    protected Prodotto(ICatalogo oggetto)
-    {
-        _oggetto = oggetto;
-    }
+    protected Prodotto(ICatalogo oggetto) { _oggetto = oggetto; }
 
     public virtual string Descrizione() => _oggetto.Descrizione();
     
