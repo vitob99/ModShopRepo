@@ -145,10 +145,16 @@
         switch (scelta.Key)
         {
             case ConsoleKey.D1:
+                // 1. Scelta strategia
+                // 2. Pagamento
                 break;
             case ConsoleKey.D2:
+                // 1. Scelta strategia
+                // 2. Pagamento
                 break;
             case ConsoleKey.D3:
+                // 1. Scelta strategia
+                // 2. Pagamento
                 break;
         }
     }
