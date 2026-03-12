@@ -1,14 +1,14 @@
 class UI : IObserver
 {
-    public void AggiornamentoCambioDecorazione(string tipo) // + ICatalogo p o IProdotto
+    public void AggiornamentoCambioDecorazione(ICatalogo c, string tipo) // + ICatalogo p o IProdotto
     {
         switch (tipo)
         {
             case "aggiunto":
-                Console.WriteLine($"");
+                Console.WriteLine($"{c.Descrizione()}");
                 break;
             case "rimosso":
-                Console.WriteLine($"");
+                Console.WriteLine($"{c.Descrizione()}");
                 break;
         }
     }
@@ -18,7 +18,7 @@ class UI : IObserver
         Console.WriteLine($"[UI] - Strategia aggiornata => '{s.NomeStrategia()}'");
     }
 
-    public void AggiornamentoCheckout() //ICatalogo p o IProdotto
+    public void AggiornamentoCheckout(ICatalogo c) 
     {
         throw new NotImplementedException();
     }

@@ -1,8 +1,13 @@
-class StandardPricingStrategy : IStrategyPagamento
+public class StandardPricingStrategy : IStrategyPagamento
 {
-    public decimal CalcolaPrezzo(decimal prezzo, string valuta, int iva, int sconto)
+    const decimal TASSO_US = 1.0771m;
+    public decimal CalcolaPrezzo(decimal prezzo, string regione)
     {
-        throw new NotImplementedException();
+        if(regione == "US")
+        {
+            return prezzo / TASSO_US;
+        }
+        return prezzo;
     }
 
     public string NomeStrategia()
