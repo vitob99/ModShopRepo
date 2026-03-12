@@ -5,10 +5,10 @@ public class Email : IObserver
         switch (tipo)
         {
             case "aggiunto":
-                Console.WriteLine($"[EMAIL] Aggiunto {c.Descrizione()}");
+                Console.WriteLine($"[EMAIL] - Aggiunto {c.Descrizione()}");
                 break;
             case "rimosso":
-                Console.WriteLine($"[EMAIL] Rimosso {c.Descrizione()}");
+                Console.WriteLine($"[EMAIL] - Rimosso {c.Descrizione()}");
                 break;
         }
     }

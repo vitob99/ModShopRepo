@@ -12,5 +12,5 @@ public class VIPPricingStrategy : IStrategyPagamento
         return (regione == "US") ? prezzoScontato * TASSO_US : prezzoScontato;
     }
 
-    public string NomeStrategia() => "Calcolo Prezzo VIP";
+    public string NomeStrategia() => "Calcolo prezzo (VIP)";
 }

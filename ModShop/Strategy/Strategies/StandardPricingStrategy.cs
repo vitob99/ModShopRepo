@@ -7,5 +7,5 @@ public class StandardPricingStrategy : IStrategyPagamento
         return (regione == "US") ? prezzo * TASSO_US : prezzo;
     }
 
-    public string NomeStrategia() => "Calcolo Prezzo Standard";
+    public string NomeStrategia() => "Calcolo prezzo (Standard)";
 }

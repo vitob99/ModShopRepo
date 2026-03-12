@@ -174,7 +174,7 @@
 
         Console.Clear();
         Console.WriteLine($"Strategia applicata: {AppContext.Instance.Strategy!.NomeStrategia()}");
-        Console.WriteLine($"Prezzo finale da pagare ({AppContext.Instance.Regione}): {(AppContext.Instance.Regione == "EU" ? "€" : "$")}{prezzoFinale:F2}\n");
+        Console.WriteLine($"Prezzo finale ({AppContext.Instance.Regione}): {(AppContext.Instance.Regione == "EU" ? "€" : "$")}{prezzoFinale:F2}\n");
         
         AppContext.Instance.Checkout(oggetto); // Aggiungi oggetto finale alla variabile globale e notifica gli osservatori
     }

@@ -10,5 +10,5 @@ public class PromoPricingStrategy : IStrategyPagamento
         // 2. Convertiamo se necessario
         return (regione == "US") ? prezzoScontato * TASSO_US : prezzoScontato;
     }
-    public string NomeStrategia() => "Calcolo Prezzo Promo";
+    public string NomeStrategia() => "Calcolo prezzo (Promo)";
 }

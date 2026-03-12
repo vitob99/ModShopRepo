@@ -13,23 +13,10 @@ public sealed class AppContext
 
     private AppContext() { }
 
-    // Impostazione catalogo
-    public void SetCatalogo(ICatalogo c)
-    {
-        _catalogo = c;
-    }
-
-    // Gestione observer
-    public void Attach(IObserver observer)
-    {
-        _listObs.Add(observer);
-    }
-
-    public void Detach(IObserver observer)
-    {
-        _listObs.Remove(observer);
-    }
-
+    public void SetCatalogo(ICatalogo c) => _catalogo = c;
+    public void Attach(IObserver observer) => _listObs.Add(observer);
+    public void Detach(IObserver observer) =>  _listObs.Remove(observer);
+    
     private void NotifyStrategia()
     {
         foreach (var o in _listObs)
@@ -37,7 +24,7 @@ public sealed class AppContext
             o.AggiornamentoCambioStrategia(_strategy!);
         }
     }
-
+    
     private void NotifyDecorazione(string tipo)
     {
         foreach (var o in _listObs)
@@ -69,16 +56,9 @@ public sealed class AppContext
         return _strategy.CalcolaPrezzo(prezzo, _regione!);
     }
 
-    // Ecenti extra
-    public void AggiuntaDecorazione()
-    {
-        NotifyDecorazione("aggiunto");
-    }
-
-    public void RimozioneDecorazione()
-    {
-        NotifyDecorazione("rimosso");
-    }
+    // Eventi extra
+    public void AggiuntaDecorazione() => NotifyDecorazione("aggiunto");
+    public void RimozioneDecorazione() => NotifyDecorazione("rimosso");
 
     public void Checkout(ICatalogo oggetto)
     {
