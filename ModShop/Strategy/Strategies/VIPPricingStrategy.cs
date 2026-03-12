@@ -2,13 +2,18 @@ public class VIPPricingStrategy : IStrategyPagamento
 {
     const decimal TASSO_US = 1.0771m;
     const int VIP_DISCOUNT = 7;
+
     public decimal CalcolaPrezzo(decimal prezzo, string regione)
     {
-        if(regione == "US")
+        decimal prezzoScontato = prezzo - (prezzo * VIP_DISCOUNT / 100);
+
+        if (regione == "US")
         {
-            return prezzo - prezzo * VIP_DISCOUNT / 100 / TASSO_US;
+            // Se il prezzo base è in Euro, lo moltiplichiamo per il tasso per avere i Dollari
+            return prezzoScontato * TASSO_US;
         }
-        return prezzo - (prezzo * VIP_DISCOUNT / 100);
+        
+        return prezzoScontato;
     }
 
     public decimal CalcolaPrezzo(decimal prezzo, string valuta, int iva, int sconto)
