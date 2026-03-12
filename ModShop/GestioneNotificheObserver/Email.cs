@@ -1,4 +1,4 @@
-class Email : IObserver
+public class Email : IObserver
 {
     public void AggiornamentoCambioDecorazione(string tipo) // + ICatalogo p o IProdotto
     {

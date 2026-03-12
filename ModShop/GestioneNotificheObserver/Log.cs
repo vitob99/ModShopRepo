@@ -1,4 +1,4 @@
-class Log : IObserver
+public class Log : IObserver
 {
     public void AggiornamentoCambioDecorazione(string tipo) // + ICatalogo p o IProdotto
     {

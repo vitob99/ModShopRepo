@@ -1,4 +1,4 @@
-class UI : IObserver
+public class UI : IObserver
 {
     public void AggiornamentoCambioDecorazione(string tipo) // + ICatalogo p o IProdotto
     {
