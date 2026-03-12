@@ -58,12 +58,10 @@
     public static void AcquistaFumetto()
     {
         //ICatalogo oggetto = CatalogoFactory("FUMETTO");
-        
         bool flag = true;
-        while (flag)
+        while (flag) 
         {
             int scelta;
-
             do {
                 Console.Clear();
                 Console.WriteLine("--- CATALOGO FUMETTI ---");
@@ -73,7 +71,6 @@
                     $"4. Batman: Il Ritorno del Cavaliere Oscuro - {(regione is "EU" ? '€' : '$')}20.00\n" +
                     $"5. Flash Vol. 100 - {(regione is "EU" ? '€' : '$')}4.30");
             } while (!int.TryParse(Console.ReadLine()!, out scelta) || scelta is < 1 or > 5);
-            
             //oggetto = DecoratorFatory.Decora(oggetto);
             ContinueOrNot(ref flag);
         }
@@ -82,12 +79,10 @@
     public static void AcquistaGadget()
     {
         //ICatalogo oggetto = CatalogoFactory("GADGET");
-
         bool flag = true;
-        while (flag)
+        while (flag) 
         {
             int scelta;
-
             do {
                 Console.WriteLine("--- CATALOGO GADGET ---");
                 Console.WriteLine($"1. Funko Pop! Iron Man - {(regione is "EU" ? '€' : '$')}12.90\n" +
@@ -99,17 +94,17 @@
             
             //oggetto = DecoratorFatory.Decora(oggetto);
             ContinueOrNot(ref flag);
+            PaymentMethod(/*oggetto*/);
         }
     }
     public static void AcquistaOggettoDigitale()
     {
+        //ICatalogo oggetto = CatalogoFactory("DIGITALE");
         bool flag = true;
         while (flag)
         {
             int scelta;
-
-            do {
-                //ICatalogo oggetto = CatalogoFactory("DIGITALE");
+            do { 
                 Console.WriteLine("--- CONTENUTI DIGITALI ---");
                 Console.WriteLine($"1. Wallpaper Collezione Artistica - {(regione is "EU" ? '€' : '$')}1.99\n" +
                 $"2. Colonna Sonora Originale - {(regione is "EU" ? '€' : '$')}9.99\n" +
@@ -120,12 +115,12 @@
             
             //oggetto = DecoratorFatory.Decora(oggetto);
             ContinueOrNot(ref flag);
+            PaymentMethod(/*oggetto*/);
         }
     }
 
     public static void ContinueOrNot(ref bool flag)
     {
-        
         ConsoleKeyInfo continuare;
             do {
                 Console.Clear();
@@ -136,6 +131,25 @@
 
             if (continuare.Key is ConsoleKey.N) flag = false; 
             ContinueAndClear();
+    }
+    public static void PaymentMethod(/*ICatalogo oggetto*/)
+    {
+        ConsoleKeyInfo scelta;
+        do {
+            Console.Clear();
+            Console.WriteLine("Selezione metodo pagamento:\n1. Contanti\n1. Carta Credito\n3. Bitcoin");
+            scelta = Console.ReadKey()!;
+        } while (scelta.Key is < ConsoleKey.D1 or > ConsoleKey.D3);
+
+        switch (scelta.Key)
+        {
+            case ConsoleKey.D1:
+                break;
+            case ConsoleKey.D2:
+                break;
+            case ConsoleKey.D3:
+                break;
+        }
     }
     public static void ContinueAndClear()
     {
