@@ -1,46 +1,49 @@
 public static class DecoratorFactory
 {
-    public static ICatalogo Decora(ICatalogo oggettoBase, int scelta)
+    public static ICatalogo Decora(ICatalogo oggettoCorrente, int scelta)
     {
-        if (oggettoBase is Gadget)
+        string desc = oggettoCorrente.Descrizione();
+
+        // Controlliamo se la descrizione inizia con la stringa della categoria
+        if (desc.StartsWith("Gadget"))
         {
             return scelta switch
             {
-                1 => new FunkoPop(oggettoBase),
-                2 => new Portachiavi(oggettoBase),
-                3 => new Tazza(oggettoBase),
-                4 => new Poster(oggettoBase),
-                5 => new ActionFigure(oggettoBase),
-                _ => oggettoBase
+                1 => new FunkoPop(oggettoCorrente),
+                2 => new Portachiavi(oggettoCorrente),
+                3 => new Tazza(oggettoCorrente),
+                4 => new Poster(oggettoCorrente),
+                5 => new ActionFigure(oggettoCorrente),
+                _ => oggettoCorrente
             };
         }
 
-        if (oggettoBase is Fumetto)
+        if (desc.StartsWith("Fumetto"))
         {
             return scelta switch
             {
-                1 => new SpiderManBlue(oggettoBase),
-                2 => new Superman(oggettoBase),
-                3 => new JusticeLeague(oggettoBase),
-                4 => new Batman(oggettoBase),
-                5 => new Flash(oggettoBase),
-                _ => oggettoBase
+                1 => new SpiderManBlue(oggettoCorrente),
+                2 => new Superman(oggettoCorrente),
+                3 => new JusticeLeague(oggettoCorrente),
+                4 => new Batman(oggettoCorrente),
+                5 => new Flash(oggettoCorrente),
+                _ => oggettoCorrente
             };
         }
 
-        if (oggettoBase is Digitale)
+        if (desc.StartsWith("Oggetto Digitale"))
         {
             return scelta switch
             {
-                1 => new WallpaperArtistico(oggettoBase),
-                2 => new ColonnaSonora(oggettoBase),
-                3 => new Artbook(oggettoBase),
-                4 => new Skin(oggettoBase),
-                5 => new AbbonamentoPremium(oggettoBase),
-                _ => oggettoBase
+                1 => new WallpaperArtistico(oggettoCorrente),
+                2 => new ColonnaSonora(oggettoCorrente),
+                3 => new Artbook(oggettoCorrente),
+                4 => new Skin(oggettoCorrente),
+                5 => new AbbonamentoPremium(oggettoCorrente),
+                _ => oggettoCorrente
             };
         }
 
-        return oggettoBase;
+        return oggettoCorrente;
     }
 }
