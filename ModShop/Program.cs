@@ -58,29 +58,35 @@
     public static void AcquistaFumetto()
     {
         Console.WriteLine("--- CATALOGO FUMETTI ---");
-        Console.WriteLine("1. Spider-Man: Blue - €15.00\n" +
-            "2. Superman (Ed. Deluxe) - €35.00\n" +
-            "3. Justice League Vol. 1 - €5.00\n" +
-            "4. Batman: Il Ritorno del Cavaliere Oscuro - €20.00\n" +
-            "5. Flash Vol. 100 - €4.30");
+        Console.WriteLine($"1. Spider-Man: Blue - {(regione is "EU" ? '€' : '$')}15.00\n" +
+            $"2. Superman (Ed. Deluxe) - {(regione is "EU" ? '€' : '$')}35.00\n" +
+            $"3. Justice League Vol. 1 - {(regione is "EU" ? '€' : '$')}5.00\n" +
+            $"4. Batman: Il Ritorno del Cavaliere Oscuro - {(regione is "EU" ? '€' : '$')}20.00\n" +
+            $"5. Flash Vol. 100 - {(regione is "EU" ? '€' : '$')}4.30");
+
+            ContinueAndClear();
     }
     public static void AcquistaGadget()
     {
         Console.WriteLine("--- CATALOGO GADGET ---");
-        Console.WriteLine("1. Funko Pop! Iron Man - €12.90\n" +
-            "2. Portachiavi Zelda (Triforza) - €6.50\n" +
-            "3. Tazza Termica Pac-Man - €14.00\n" +
-            "4. Poster Arrotolato One Piece - €9.90\n" +
-            "5. Action Figure Goku SSJ - €45.00");
+        Console.WriteLine($"1. Funko Pop! Iron Man - {(regione is "EU" ? '€' : '$')}12.90\n" +
+            $"2. Portachiavi Zelda (Triforza) - {(regione is "EU" ? '€' : '$')}6.50\n" +
+            $"3. Tazza Termica Pac-Man - {(regione is "EU" ? '€' : '$')}14.00\n" +
+            $"4. Poster Arrotolato One Piece - {(regione is "EU" ? '€' : '$')}9.90\n" +
+            $"5. Action Figure Goku SSJ - {(regione is "EU" ? '€' : '$')}45.00");
+
+            ContinueAndClear();
     }
     public static void AcquistaOggettoDigitale()
     {
         Console.WriteLine("--- CONTENUTI DIGITALI ---");
-        Console.WriteLine("1. Wallpaper Collezione Artistica - €1.99\n" +
-            "2. Colonna Sonora Originale - €9.99\n" +
-            "3. Artbook Digitale (PDF) - €12.50\n" +
-            "4. Skin Esclusiva 'Pixel Hero' - €4.99\n" +
-            "5. Abbonamento Premium 1 Mese - €7.00");
+        Console.WriteLine($"1. Wallpaper Collezione Artistica - {(regione is "EU" ? '€' : '$')}1.99\n" +
+            $"2. Colonna Sonora Originale - {(regione is "EU" ? '€' : '$')}9.99\n" +
+            $"3. Artbook Digitale (PDF) - {(regione is "EU" ? '€' : '$')}12.50\n" +
+            $"4. Skin Esclusiva 'Pixel Hero' - {(regione is "EU" ? '€' : '$')}4.99\n" +
+            $"5. Abbonamento Premium 1 Mese - {(regione is "EU" ? '€' : '$')}7.00");
+
+            ContinueAndClear();
     }
 
     public static void ContinueAndClear()
