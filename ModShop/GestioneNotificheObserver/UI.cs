@@ -5,10 +5,10 @@ public class UI : IObserver
         switch (tipo)
         {
             case "aggiunto":
-                Console.WriteLine($"{c.Descrizione()}");
+                Console.WriteLine($"Aggiunta: {c.Descrizione()}");
                 break;
             case "rimosso":
-                Console.WriteLine($"{c.Descrizione()}");
+                Console.WriteLine($"Rimossa: {c.Descrizione()}");
                 break;
         }
     }
@@ -20,7 +20,7 @@ public class UI : IObserver
 
     public void AggiornamentoCheckout(ICatalogo c) 
     {
-        throw new NotImplementedException();
+        Console.WriteLine($"[UI] - CHECKOUT => '{c.Descrizione()}'");
     }
 
 }
