@@ -1,6 +1,6 @@
-class Email : IObserver
+public class Email : IObserver
 {
-    public void AggiornamentoCambioDecorazione(string tipo) // + ICatalogo p o IProdotto
+    public void AggiornamentoCambioDecorazione(ICatalogo c, string tipo) // + ICatalogo p o IProdotto
     {
         switch (tipo)
         {
@@ -18,7 +18,7 @@ class Email : IObserver
         Console.WriteLine($"[EMAIL] - Strategia aggiornata => '{s.NomeStrategia()}'");
     }
 
-    public void AggiornamentoCheckout() //ICatalogo p o IProdotto
+    public void AggiornamentoCheckout(ICatalogo c) //ICatalogo p o IProdotto
     {
         throw new NotImplementedException();
     }
