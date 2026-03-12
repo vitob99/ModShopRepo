@@ -1,6 +1,7 @@
 ﻿class Program
 {
-    public static string regione = string.Empty;
+    // PLACEHOLDER
+    public static string regione = string.Empty; // Ovviamente si dovrà leggere/scrivere la proprietà globale nel 'AppContext'
     public static void Main()
     {
         SceltaRegione();
@@ -161,7 +162,7 @@
                 break;
         }
     }
-    
+
     public static void ContinueAndClear()
     {
         Console.WriteLine("\nPremere un tasto per continuare...");
