@@ -5,10 +5,10 @@ public class Email : IObserver
         switch (tipo)
         {
             case "aggiunto":
-                Console.WriteLine($"");
+                Console.WriteLine($"[EMAIL] Aggiunto {c.Descrizione()}");
                 break;
             case "rimosso":
-                Console.WriteLine($"");
+                Console.WriteLine($"[EMAIL] Rimosso {c.Descrizione()}");
                 break;
         }
     }
@@ -20,7 +20,7 @@ public class Email : IObserver
 
     public void AggiornamentoCheckout(ICatalogo c) //ICatalogo p o IProdotto
     {
-        throw new NotImplementedException();
+        Console.WriteLine($"[EMAIL] - Checkout => '{c.Descrizione()}'");
     }
 }
 
