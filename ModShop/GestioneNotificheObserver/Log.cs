@@ -1,6 +1,6 @@
 public class Log : IObserver
 {
-    public void AggiornamentoCambioDecorazione(string tipo) // + ICatalogo p o IProdotto
+    public void AggiornamentoCambioDecorazione(ICatalogo c, string tipo) // + ICatalogo p o IProdotto
     {
         switch (tipo)
         {
@@ -18,7 +18,7 @@ public class Log : IObserver
         Console.WriteLine($"[{DateTime.Now}] - Strategia aggiornata => '{s.NomeStrategia()}'");
     }
 
-    public void AggiornamentoCheckout() //ICatalogo p o IProdotto
+    public void AggiornamentoCheckout(ICatalogo c) //ICatalogo p o IProdotto
     {
         Console.WriteLine($"[{DateTime.Now}] - Erogato il checkout");
     }

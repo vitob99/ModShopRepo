@@ -5,6 +5,7 @@ public sealed class AppContext
     private List<IObserver> observers = new List<IObserver>();
 
     private IStrategyPagamento strategy;
+    private ICatalogo catalogo;
 
     private AppContext() { }
 
@@ -12,10 +13,16 @@ public sealed class AppContext
     {
         if (_instance == null)
         {
-            return _instance = new AppContext();
+            _instance = new AppContext();
         }
 
         return _instance;
+    }
+
+    // impostazione catalogo
+    public void SetCatalogo(ICatalogo c)
+    {
+        catalogo = c;
     }
 
     // GESTIONE OBSERVER
@@ -29,7 +36,7 @@ public sealed class AppContext
         observers.Remove(observer);
     }
 
-    private void NotifyStrategia() //notifica che va richiamata dopo il cambio di strategia
+    private void NotifyStrategia()
     {
         foreach (var o in observers)
         {
@@ -37,22 +44,21 @@ public sealed class AppContext
         }
     }
 
-    private void NotifyDecorazione(string tipo) //notifica che va richiamata dopo la funzione Decora()
+    private void NotifyDecorazione(string tipo)
     {
         foreach (var o in observers)
         {
-            o.AggiornamentoCambioDecorazione(tipo);
+            o.AggiornamentoCambioDecorazione(catalogo, tipo);
         }
     }
 
-    private void NotifyCheckout() //notifica che va richiamata per il riepilogo dell'ordine
+    private void NotifyCheckout()
     {
         foreach (var o in observers)
         {
-            o.AggiornamentoCheckout();
+            o.AggiornamentoCheckout(catalogo);
         }
     }
-
 
     // STRATEGY
     public void SetStrategia(IStrategyPagamento s)
@@ -68,7 +74,6 @@ public sealed class AppContext
 
         return strategy.CalcolaPrezzo(prezzo, valuta, iva, sconto);
     }
-
 
     // EVENTI EXTRA
     public void AggiuntaDecorazione()
