@@ -1,32 +1,17 @@
 public class Gadget : ICatalogo
 {
-    //public required string Produttore;
-    //public bool isLimited;
-
-    public string Descrizione()
-    {
-        return "Gadget";
-    }
+    public string Descrizione() => "Gadget: ";
+    public decimal GetPrezzo() => 0.00m; // Base del calcolo
 }
 
 public class Digitale : ICatalogo
 {
-    //public required string Produttore;
-    //public bool isLimited;
-
-    public string Descrizione()
-    {
-        return "Oggetto Digitale";
-    }
+    public string Descrizione() => "Oggetto Digitale: ";
+    public decimal GetPrezzo() => 0.00m; // Base del calcolo
 }
 
 public class Fumetto : ICatalogo
 {
-    //public required string Produttore;
-    //public bool isLimited;
-
-    public string Descrizione()
-    {
-        return "Fumetto";
-    }
+    public string Descrizione() => "Fumetto: ";
+    public decimal GetPrezzo() => 0.00m; // Base del calcolo
 }
