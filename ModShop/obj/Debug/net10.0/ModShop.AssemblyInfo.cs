@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ModShop")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ea7e27e0921baebcf9eb17d23a27a32124a50da1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b260c1f1bb89f4884af2d83883b93a939a3c361f")]
 [assembly: System.Reflection.AssemblyProductAttribute("ModShop")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ModShop")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
