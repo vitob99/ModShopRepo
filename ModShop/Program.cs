@@ -2,6 +2,7 @@
 {
     public static void Main()
     {
+        AppContext.Instance.SeedListObs();
         SceltaRegione();
 
         bool flag = true;
@@ -46,7 +47,7 @@
             scelta = Console.ReadKey(true);
         } while (scelta.Key is < ConsoleKey.D1 or > ConsoleKey.D2);
         
-        AppContext.regione = scelta.Key switch { ConsoleKey.D1 => "EU", ConsoleKey.D2 => "US", _ => string.Empty };
+        AppContext.Instance.Regione = scelta.Key switch { ConsoleKey.D1 => "EU", ConsoleKey.D2 => "US", _ => string.Empty };
 
         Console.Clear();
         Console.WriteLine("Regione selezionata. Accesso validato!");
@@ -65,11 +66,11 @@
             do {
                 Console.Clear();
                 Console.WriteLine("--- CATALOGO FUMETTI ---");
-                Console.WriteLine($"1. Spider-Man: Blue - {(AppContext.regione is "EU" ? '€' : '$')}15.00\n" +
-                    $"2. Superman (Ed. Deluxe) - {(AppContext.regione is "EU" ? '€' : '$')}35.00\n" +
-                    $"3. Justice League Vol. 1 - {(AppContext.regione is "EU" ? '€' : '$')}5.00\n" +
-                    $"4. Batman: Il Ritorno del Cavaliere Oscuro - {(AppContext.regione is "EU" ? '€' : '$')}20.00\n" +
-                    $"5. Flash Vol. 100 - {(AppContext.regione is "EU" ? '€' : '$')}4.30");
+                Console.WriteLine($"1. Spider-Man: Blue - {(AppContext.Instance.Regione is "EU" ? '€' : '$')}15.00\n" +
+                    $"2. Superman (Ed. Deluxe) - {(AppContext.Instance.Regione is "EU" ? '€' : '$')}35.00\n" +
+                    $"3. Justice League Vol. 1 - {(AppContext.Instance.Regione is "EU" ? '€' : '$')}5.00\n" +
+                    $"4. Batman: Il Ritorno del Cavaliere Oscuro - {(AppContext.Instance.Regione is "EU" ? '€' : '$')}20.00\n" +
+                    $"5. Flash Vol. 100 - {(AppContext.Instance.Regione is "EU" ? '€' : '$')}4.30");
             } while (!int.TryParse(Console.ReadLine()!, out scelta) || scelta is < 1 or > 5);
             
             // 2. Decoriamo l'oggetto esistente con la nuova scelta
@@ -92,11 +93,11 @@
             int scelta;
             do {
                 Console.WriteLine("--- CATALOGO GADGET ---");
-                Console.WriteLine($"1. Funko Pop! Iron Man - {(AppContext.regione is "EU" ? '€' : '$')}12.90\n" +
-                $"2. Portachiavi Zelda (Triforza) - {(AppContext.regione is "EU" ? '€' : '$')}6.50\n" +
-                $"3. Tazza Termica Pac-Man - {(AppContext.regione is "EU" ? '€' : '$')}14.00\n" +
-                $"4. Poster Arrotolato One Piece - {(AppContext.regione is "EU" ? '€' : '$')}9.90\n" +
-                $"5. Action Figure Goku SSJ - {(AppContext.regione is "EU" ? '€' : '$')}45.00");
+                Console.WriteLine($"1. Funko Pop! Iron Man - {(AppContext.Instance.Regione is "EU" ? '€' : '$')}12.90\n" +
+                $"2. Portachiavi Zelda (Triforza) - {(AppContext.Instance.Regione is "EU" ? '€' : '$')}6.50\n" +
+                $"3. Tazza Termica Pac-Man - {(AppContext.Instance.Regione is "EU" ? '€' : '$')}14.00\n" +
+                $"4. Poster Arrotolato One Piece - {(AppContext.Instance.Regione is "EU" ? '€' : '$')}9.90\n" +
+                $"5. Action Figure Goku SSJ - {(AppContext.Instance.Regione is "EU" ? '€' : '$')}45.00");
             } while (!int.TryParse(Console.ReadLine()!, out scelta) || scelta is < 1 or > 5);
             
             oggetto = DecoratorFactory.Decora(oggetto, scelta);
@@ -115,11 +116,11 @@
             int scelta;
             do { 
                 Console.WriteLine("--- CONTENUTI DIGITALI ---");
-                Console.WriteLine($"1. Wallpaper Collezione Artistica - {(AppContext.regione is "EU" ? '€' : '$')}1.99\n" +
-                $"2. Colonna Sonora Originale - {(AppContext.regione is "EU" ? '€' : '$')}9.99\n" +
-                $"3. Artbook Digitale (PDF) - {(AppContext.regione is "EU" ? '€' : '$')}12.50\n" +
-                $"4. Skin Esclusiva 'Pixel Hero' - {(AppContext.regione is "EU" ? '€' : '$')}4.99\n" +
-                $"5. Abbonamento Premium 1 Mese - {(AppContext.regione is "EU" ? '€' : '$')}7.00");
+                Console.WriteLine($"1. Wallpaper Collezione Artistica - {(AppContext.Instance.Regione is "EU" ? '€' : '$')}1.99\n" +
+                $"2. Colonna Sonora Originale - {(AppContext.Instance.Regione is "EU" ? '€' : '$')}9.99\n" +
+                $"3. Artbook Digitale (PDF) - {(AppContext.Instance.Regione is "EU" ? '€' : '$')}12.50\n" +
+                $"4. Skin Esclusiva 'Pixel Hero' - {(AppContext.Instance.Regione is "EU" ? '€' : '$')}4.99\n" +
+                $"5. Abbonamento Premium 1 Mese - {(AppContext.Instance.Regione is "EU" ? '€' : '$')}7.00");
             } while (!int.TryParse(Console.ReadLine()!, out scelta) || scelta is < 1 or > 5);
             
             oggetto = DecoratorFactory.Decora(oggetto, scelta);
@@ -172,10 +173,10 @@
         decimal prezzoFinale = AppContext.Instance.CalcolaPrezzo(prezzoBase);
 
         Console.Clear();
-        Console.WriteLine($"Strategia applicata: {AppContext.Instance.strategy!.NomeStrategia()}");
-        Console.WriteLine($"Prezzo finale da pagare ({AppContext.regione}): {(AppContext.regione == "EU" ? "€" : "$")}{prezzoFinale:F2}");
+        Console.WriteLine($"Strategia applicata: {AppContext.Instance.Strategy!.NomeStrategia()}");
+        Console.WriteLine($"Prezzo finale da pagare ({AppContext.Instance.Regione}): {(AppContext.Instance.Regione == "EU" ? "€" : "$")}{prezzoFinale:F2}\n");
         
-        AppContext.Instance.Checkout(); // Notifica gli osservatori
+        AppContext.Instance.Checkout(oggetto); // Aggiungi oggetto finale alla variabile globale e notifica gli osservatori
     }
 
     public static void ContinueAndClear()

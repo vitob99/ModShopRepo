@@ -1,72 +1,75 @@
 public sealed class AppContext
 {
     private static readonly Lazy<AppContext> _instance = new (() => new AppContext());
-    private List<IObserver> observers = new List<IObserver>();
-    public static string? regione;
-    public IStrategyPagamento? strategy;
-    private ICatalogo? catalogo;
+    private List<IObserver> _listObs = [];
+    public string _regione = string.Empty;
+    private ICatalogo? _catalogo;
+    public IStrategyPagamento? _strategy;
 
     public static AppContext Instance => _instance.Value;
+    public string Regione { get => _regione; set => _regione = value; }
+    public ICatalogo? Catalogo { get => _catalogo; set => _catalogo = value; }
+    public IStrategyPagamento? Strategy { get => _strategy; set => _strategy = value; }
 
     private AppContext() { }
 
-    // impostazione catalogo
+    // Impostazione catalogo
     public void SetCatalogo(ICatalogo c)
     {
-        catalogo = c;
+        _catalogo = c;
     }
 
-    // GESTIONE OBSERVER
+    // Gestione observer
     public void Attach(IObserver observer)
     {
-        observers.Add(observer);
+        _listObs.Add(observer);
     }
 
     public void Detach(IObserver observer)
     {
-        observers.Remove(observer);
+        _listObs.Remove(observer);
     }
 
     private void NotifyStrategia()
     {
-        foreach (var o in observers)
+        foreach (var o in _listObs)
         {
-            o.AggiornamentoCambioStrategia(strategy!);
+            o.AggiornamentoCambioStrategia(_strategy!);
         }
     }
 
     private void NotifyDecorazione(string tipo)
     {
-        foreach (var o in observers)
+        foreach (var o in _listObs)
         {
-            o.AggiornamentoCambioDecorazione(catalogo!, tipo);
+            o.AggiornamentoCambioDecorazione(_catalogo!, tipo);
         }
     }
 
     private void NotifyCheckout()
     {
-        foreach (var o in observers)
+        foreach (var o in _listObs)
         {
-            o.AggiornamentoCheckout(catalogo!);
+            o.AggiornamentoCheckout(_catalogo!);
         }
     }
 
-    // STRATEGY
+    // Metodo per settare lo Strategy
     public void SetStrategia(IStrategyPagamento s)
     {
-        strategy = s;
+        _strategy = s;
         NotifyStrategia();
     }
 
     public decimal CalcolaPrezzo(decimal prezzo)
     {
-        if (strategy == null)
+        if (_strategy == null)
             throw new Exception("Strategia non impostata");
 
-        return strategy.CalcolaPrezzo(prezzo, regione!);
+        return _strategy.CalcolaPrezzo(prezzo, _regione!);
     }
 
-    // EVENTI EXTRA
+    // Ecenti extra
     public void AggiuntaDecorazione()
     {
         NotifyDecorazione("aggiunto");
@@ -77,8 +80,17 @@ public sealed class AppContext
         NotifyDecorazione("rimosso");
     }
 
-    public void Checkout()
+    public void Checkout(ICatalogo oggetto)
     {
+        _catalogo = oggetto;
         NotifyCheckout();
+    }
+
+    // Seeding lista osservatori
+    public void SeedListObs()
+    {
+        Attach(new Email());
+        Attach(new Log());
+        Attach(new UI());
     }
 }
